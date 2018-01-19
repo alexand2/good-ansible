@@ -5,3 +5,4 @@
   tasks:
     - name: Simple Ping Test
       ping:
+      delegate_to: tag_Name_bastion
