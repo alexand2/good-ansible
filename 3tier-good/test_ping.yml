@@ -3,6 +3,6 @@
   become: true
 
   tasks:
-    - name: Simple Ping Test
-      ping:
+    - name: Print Date
+      command: date
       delegate_to: 34.226.81.126
