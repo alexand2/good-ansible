@@ -5,4 +5,4 @@
   tasks:
     - name: Simple Ping Test
       ping:
-      delegate_to: tag_Name_bastion
+      delegate_to: 34.226.81.126
