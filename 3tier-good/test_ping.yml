@@ -1,4 +1,6 @@
 - name: test_ping
   hosts: tag_Name_bastion
   become: true
-  ping:
+  tasks:
+    - Name: Simple Ping Test
+      ping:
