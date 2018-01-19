@@ -1,5 +1,5 @@
 - name: test_ping
-  hosts: tag_Name
+  hosts: tag_three_tier_app_3a9d
   become: true
 
   tasks:
