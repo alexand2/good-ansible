@@ -17,13 +17,8 @@
   hosts: tag_three_tier_app_3a9d
   gather_facts: false # remove later! speeds up testing
   become: true
-
-  tasks:
-  - name: enable repos
-    template:
-      src: ./open_three-tier-app.repo
-      dest: /etc/yum.repos.d/open_three-tier-app.repo
-      mode: 0644
+  roles:
+    - { role: "./roles/configuration" }
 
 - name: deploy haproxy
   hosts: tag_three_tier_app_3a9d_frontend
