@@ -45,4 +45,4 @@
   hosts: 127.0.0.1
   become: false
   roles:
-    - { role: "smoke_test", GUID="3a9d" }
+    - { role: "smoke_test", GUID: "3a9d" }
