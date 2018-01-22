@@ -2,23 +2,22 @@
   hosts: tag_three_tier_app_3a9d
 
   tasks:
-    - name: Add host
-      add_host:
-       name: "{{ item.ec2_tag_internaldns }}"
-       group: "{{ item.ec2_tag_AnsibleGroup }}"
-       # ansible_ssh_private_key_file: ~/.ssh/openstack.pem
-       # ansible_ssh_user: cloud-user
-      with_items: groups['all']
+   # - name: Add host
+   #   add_host:
+   #    name: "{{ item.ec2_tag_internaldns }}"
+   #    group: "{{ item.ec2_tag_AnsibleGroup }}"
+   #    # ansible_ssh_private_key_file: ~/.ssh/openstack.pem
+   #    # ansible_ssh_user: cloud-user
+   #   with_items: groups['all']
 
-    #- name: Print Date
-    #  command: date
-    #  delegate_to: 34.226.81.126
+    - name: Print Date
+      command: date
 
-- name: Test In-Memory Host Collection
-  hosts: all
-
-  tasks:
-    - name: Display all Hosts
-      debug:
-        msg: "{{ item }}"
-      with_items: groups['all']
+#- name: Test In-Memory Host Collection
+#  hosts: all
+#
+#  tasks:
+#    - name: Display all Hosts
+#      debug:
+#        msg: "{{ item }}"
+#      with_items: groups['all']
