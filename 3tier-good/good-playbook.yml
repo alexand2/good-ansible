@@ -24,6 +24,10 @@
   hosts: tag_three_tier_app_3a9d_frontend
   gather_facts: false # remove later! speeds up testing
   become: true
+  vars:
+    - GUID: "3a9d"
+  roles:
+    - { role: "./roles/frontend" }
 
   tasks:
   - name: http
