@@ -40,3 +40,8 @@
     - GUID: "3a9d"
   roles:
     - { role: "frontend" }
+
+- name: Execute Smoke Test at the End
+  hosts: 127.0.0.1
+  roles:
+    - { role: "smoke_test", GUID="3a9d" }
