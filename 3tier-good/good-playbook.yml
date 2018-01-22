@@ -29,33 +29,6 @@
   roles:
     - { role: "./roles/frontend" }
 
-  tasks:
-  - name: http
-    package:
-      name: httpie
-      state: latest
-
-  - name: install HAProxy
-    yum:
-      name: haproxy 
-      state: latest
-
-  - name: enable HAProxy
-    service:
-      name: haproxy
-      state: started
-
-  - name: configure haproxy
-    template:
-      src: ./haproxy.cfg.j2
-      dest: /etc/haproxy/haproxy.cfg
-
-  - name: restart HAproxy
-    service:
-      name: haproxy
-      state: restarted
-
-
 - name: deploy tomcat
   hosts: tag_three_tier_app_3a9d_app
   gather_facts: false
@@ -98,7 +71,11 @@
 #      src: index.html.app1
 #      dest: /usr/share/tomcat/webapps/ansible/index.html
 
-- import_playbook: postgresql.yaml
+#- import_playbook: postgresql.yaml
+- name: Deploy Database
+  hosts: tag_three_tier_app_3a9d_appdb
+  roles:
+    - { role: geerlingguy.postgresql }
 
 #- name: deploy postgres
 #  hosts: apps
