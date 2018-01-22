@@ -14,7 +14,7 @@
 #   No use of handlers
 
 - name: configuration
-  hosts: all
+  hosts: tag_three_tier_app_3a9d
   gather_facts: false # remove later! speeds up testing
   become: true
 
@@ -26,7 +26,7 @@
       mode: 0644
 
 - name: deploy haproxy
-  hosts: frontends
+  hosts: tag_three_tier_app_3a9d_frontend
   gather_facts: false # remove later! speeds up testing
   become: true
 
@@ -58,7 +58,7 @@
 
 
 - name: deploy tomcat
-  hosts: apps
+  hosts: tag_three_tier_app_3a9d_app
   gather_facts: false
   become: true
 
@@ -135,7 +135,7 @@
 #      state: started
 
 - name: deploy apache
-  hosts: apps
+  hosts: tag_three_tier_app_3a9d_app
   gather_facts: false
   become: true
 

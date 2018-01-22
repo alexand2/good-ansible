@@ -1,8 +1,7 @@
 - name: deploy postgres
-  hosts: apps
   gather_facts: false
   become: true
-  hosts: appdbs
+  hosts: tag_three_tier_app_3a9d_appdb
   tasks:
   - name: install postgresql-server
     yum:
