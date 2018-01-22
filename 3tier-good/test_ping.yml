@@ -10,8 +10,8 @@
    #    # ansible_ssh_user: cloud-user
    #   with_items: groups['all']
 
-    - name: Print Date
-      command: date
+    - name: Print hostname
+      command: hostname
 
 #- name: Test In-Memory Host Collection
 #  hosts: all
