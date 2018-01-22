@@ -15,34 +15,34 @@
 
 - name: Initial Configuration
   hosts: tag_three_tier_app_3a9d
-  gather_facts: false # remove later! speeds up testing
+  gather_facts: true 
   become: true
   roles:
-    - { role: "configuration" }
+    - { role: "configuration", tags: base-config }
 
 - name: Deploy Database
   hosts: tag_three_tier_app_3a9d_appdb
+  gather_facts: false
   roles:
-    - { role: geerlingguy.postgresql }
+    - { role: geerlingguy.postgresql, tags: [dbs, postgres] }
 
 - name: Deploy Tomcat and httpd
   hosts: tag_three_tier_app_3a9d_app
   gather_facts: false
   become: true
   roles:
-    - { role: app }
+    - { role: app, tags: [apps, tomcat] }
 
 - name: deploy haproxy
   hosts: tag_three_tier_app_3a9d_frontend
   gather_facts: false # remove later! speeds up testing
   become: true
-  vars:
-    - GUID: "3a9d"
   roles:
-    - { role: "frontend" }
+    - { role: "frontend", tags: [lbs, haproxy] }
 
 - name: Execute Smoke Test at the End
   hosts: 127.0.0.1
+  gather_facts: false
   become: false
   roles:
-    - { role: "smoke_test", GUID: "3a9d" }
+    - { role: "smoke_test", tags: smoke_test }
