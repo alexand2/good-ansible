@@ -21,17 +21,17 @@
     dest: /usr/share/tomcat/webapps/ROOT/index.html
     mode: 0644
 
-#- name: install httpd
-#  yum:
-#    name: httpd
-#    state: latest
-#
-#- name: enable httpd at boot
-#  service:
-#    name: httpd
-#    enabled: yes
-#
-#- name: start apache
-#  service:
-#    name: httpd
-#    state: started
+- name: install httpd
+  yum:
+    name: httpd
+    state: latest
+
+- name: enable httpd at boot
+  service:
+    name: httpd
+    enabled: yes
+
+- name: start httpd
+  service:
+    name: httpd
+    state: started
