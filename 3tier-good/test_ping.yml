@@ -18,7 +18,7 @@
   hosts: all
 
   tasks:
-    - Display all Hosts
+    - name: Display all Hosts
       debug:
-        msg: "{{ item }}""
+        msg: "{{ item }}"
       with_items: groups['all']
