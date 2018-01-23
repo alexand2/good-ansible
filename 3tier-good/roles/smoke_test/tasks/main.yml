@@ -4,6 +4,7 @@
   uri:
     url: http://{{ item }}
     return_content: yes
+    timeout: 300
   with_items: "{{ groups['frontends'] }}"
   register: webpage
 
