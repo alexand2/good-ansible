@@ -21,27 +21,27 @@
     - { role: "osp-facts"}
 
 - name: Initial Configuration
-  hosts: all
+  hosts: all!jumpbox
   gather_facts: true 
   become: true
   roles:
     - { role: "configuration", tags: base-config }
 
 - name: Deploy Database
-  hosts: appdb
+  hosts: appdbs
   gather_facts: false
   roles:
     - { role: geerlingguy.postgresql, tags: [dbs, postgres] }
 
 - name: Deploy Tomcat and httpd
-  hosts: app
+  hosts: apps
   gather_facts: false
   become: true
   roles:
     - { role: app, tags: [apps, tomcat] }
 
 - name: Deploy Frontend
-  hosts: front
+  hosts: frontends
   gather_facts: false # remove later! speeds up testing
   become: true
   roles:
