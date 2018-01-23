@@ -20,8 +20,10 @@
   #roles:
   #  - { role: "osp-facts"}
   tasks:
-    - import_tasks: "./roles/osp-facts/tasks/main.yml"
+    - name: We are deploying in QA - Gather Facts and Generate In-Memory Inventory
+      import_tasks: "./roles/osp-facts/tasks/main.yml"
       when: deploy_qa == True
+      tags: qa
 
 - name: Initial Configuration
   hosts: all:!jumpbox
@@ -54,6 +56,10 @@
   hosts: 127.0.0.1
   gather_facts: false
   become: false
-  roles:
-    - { role: "smoke_test", tags: smoke_test }
-  delegate_to: jumpbox
+  #roles:
+  #  - { role: "smoke_test", tags: smoke_test }
+  tasks:
+    - name: Run Smoke Test After Deployment
+      import_tasks: "./roles/smoke_test/tasks/main.yml"
+      delegate_to: jumpbox
+      tags: smoke_test
