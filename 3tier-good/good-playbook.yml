@@ -20,7 +20,7 @@
   #roles:
   #  - { role: "osp-facts"}
   tasks:
-    - include_tasks: "./roles/osp-facts/tasks.yml"
+    - include_tasks: "./roles/osp-facts/tasks/tasks.yml"
       when: deploy_qa == True
 
 - name: Initial Configuration
