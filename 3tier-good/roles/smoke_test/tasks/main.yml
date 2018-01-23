@@ -3,7 +3,7 @@
 - uri:
     url: http://{{ item }}
     return_content: yes
-  with_items: {{ groups['frontends'] }}
+  with_items: "{{ groups['frontends'] }}"
   register: webpage
 
 - name: Fail if 'Ansible has done its job' is not in the page content
