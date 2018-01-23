@@ -26,7 +26,7 @@
       tags: qa
 
 - name: Initial Configuration
-  hosts: all:!jumpbox
+  hosts: appdbs:apps:frontends
   gather_facts: true 
   become: true
   roles:
@@ -53,7 +53,7 @@
     - { role: "frontend", tags: [lbs, haproxy] }
 
 - name: Execute Smoke Test at the End
-  hosts: 127.0.0.1
+  hosts: jumpbox
   gather_facts: false
   become: false
   #roles:
@@ -61,5 +61,4 @@
   tasks:
     - name: Run Smoke Test After Deployment
       import_tasks: "./roles/smoke_test/tasks/main.yml"
-      delegate_to: jumpbox
       tags: smoke_test
