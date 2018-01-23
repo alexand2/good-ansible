@@ -21,7 +21,7 @@
     - { role: "osp-facts"}
 
 - name: Initial Configuration
-  hosts: all!jumpbox
+  hosts: all:!jumpbox
   gather_facts: true 
   become: true
   roles:
