@@ -17,9 +17,11 @@
   hosts: jumpbox
   gather_facts: true
   become: true
-  roles:
-    - { role: "osp-facts"}
-  when: deploy_qa == True
+  #roles:
+  #  - { role: "osp-facts"}
+  tasks:
+    - include_tasks: "./roles/osp-facts/tasks.yml"
+      when: deploy_qa == True
 
 - name: Initial Configuration
   hosts: all:!jumpbox
