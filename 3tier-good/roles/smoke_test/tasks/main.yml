@@ -1,9 +1,10 @@
 ---
 # tasks file for smoke_test
 - uri:
-    url: http://{{ item }}
+    #url: http://{{ item }}
+    url: http://54.156.181.27
     return_content: yes
-  with_items: "{{ groups['frontends'] }}"
+  #with_items: "{{ groups['frontends'] }}"
   register: webpage
 
 - debug:
@@ -11,4 +12,4 @@
 
 - name: Fail if 'Ansible has done its job' is not in the page content
   fail:
-  when: "'Ansible has done its job' not in webpage.results.content"
+  when: "'Ansible has done its job' not in webpage.content"
