@@ -1,14 +1,11 @@
 ---
 # tasks file for smoke_test
-- uri:
+- name: Run a Curl Test against Frontend
+  uri:
     url: http://{{ item }}
-    #url: http://54.156.181.27
     return_content: yes
   with_items: "{{ groups['frontends'] }}"
   register: webpage
-
-- debug:
-    msg: "{{ webpage }}"
 
 - name: Fail if 'Ansible has done its job' is not in the page content
   fail:
