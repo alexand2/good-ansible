@@ -18,7 +18,7 @@
   gather_facts: true
   become: true
   roles:
-    - { role: "osp_facts"}
+    - { role: "osp-facts"}
 
 - name: Initial Configuration
   hosts: all
