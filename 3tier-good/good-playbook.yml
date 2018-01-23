@@ -19,7 +19,7 @@
   become: true
   roles:
     - { role: "osp-facts"}
-  when: "{{ deploy_qa }}" == True
+  when: deploy_qa == True
 
 - name: Initial Configuration
   hosts: all:!jumpbox
