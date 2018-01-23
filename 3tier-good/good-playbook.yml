@@ -56,3 +56,4 @@
   become: false
   roles:
     - { role: "smoke_test", tags: smoke_test }
+  delegate_to: jumpbox
