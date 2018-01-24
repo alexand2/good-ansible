@@ -1,23 +1,18 @@
-- name: test_ping
-  hosts: tag_three_tier_app_3a9d
+- name: test_wait
+  hosts: jumpbox
+  become: false
 
   tasks:
-   # - name: Add host
-   #   add_host:
-   #    name: "{{ item.ec2_tag_internaldns }}"
-   #    group: "{{ item.ec2_tag_AnsibleGroup }}"
-   #    # ansible_ssh_private_key_file: ~/.ssh/openstack.pem
-   #    # ansible_ssh_user: cloud-user
-   #   with_items: groups['all']
+    - name: sleep for 60 seconds and continue with play
+      wait_for: 
+        timeout=60
 
-    - name: Print hostname
-      command: hostname
+    - name: Run a Curl Test against Frontend
+      uri:
+        url: http://10.10.10.12
+        return_content: yes
+      register: webpage
 
-#- name: Test In-Memory Host Collection
-#  hosts: all
-#
-#  tasks:
-#    - name: Display all Hosts
-#      debug:
-#        msg: "{{ item }}"
-#      with_items: groups['all']
+    - name: Fail if 'Ansible has done its job' is not in the page content
+      fail:
+      when: "'Ansible has done its job' not in webpage.content"
